@@ -1,0 +1,50 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: rgb(156, 189, 156);
+}
+.container{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    background: linear-gradient(#87b586, #87b586) padding-box,
+    linear-gradient(45deg,#5e8326,#87b586,#5e8326) border-box;
+    border: 1px solid transparent;
+}
+
+h1{
+    color: white;
+    text-shadow: 1px 2px 5px black;
+}
+
+.foco{
+    color:#5e8326;
+    text-shadow: 1px 1px 2px #403a3a;
+}
+
+
+#conectar{
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+    border: none;
+    background-color:#5e8326;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0px 1px 2px rgb(43, 43, 43);
+}
+
+
+.controll{
+    display: flex;
+}

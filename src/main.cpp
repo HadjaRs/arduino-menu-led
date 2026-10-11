@@ -1,73 +1,14 @@
 #include <Arduino.h>
-
-class Botao
-{
-private:
-  int pino;
-
-public:
-  Botao(int pinArduino)
-  {
-    pino = pinArduino;
-  }
-
-  void begin()
-  {
-    pinMode(pino, INPUT_PULLUP);
-  }
-
-  bool pressionado()
-  {
-    if (digitalRead(pino) == LOW)
-    {
-      while (digitalRead(pino) == LOW)
-      {
-      }
-      delay(100);
-      return true;
-    }
-    return false;
-  }
-};
+#include "classes.h"
+#include "functions.h"
 
 Botao btesquerda(2);
 Botao btconfirmar(3);
 Botao btdireita(4);
 
+int menu = 1;
 int opcao = 1;
-
-void espaco()
-{
-  for (int i = 0; i < 20; i++)
-  {
-    Serial.println("");
-  }
-}
-
-void opcoes()
-{
-  switch (opcao)
-  {
-  case 1:
-    espaco();
-    Serial.println("> LED 1");
-    Serial.println("LED 2");
-    Serial.println("AMBAS");
-    break;
-  case 2:
-    espaco();
-    Serial.println("LED 1");
-    Serial.println("> LED 2");
-    Serial.println("AMBAS");
-    break;
-  case 3:
-    espaco();
-    Serial.println("LED 1");
-    Serial.println("LED 2");
-    Serial.println("> AMBAS");
-    break;
-  }
-}
+int config = 1;
 
 void setup()
 {
@@ -84,23 +25,60 @@ void setup()
 
 void loop()
 {
-  if (btesquerda.pressionado())
+
+  if (menu == 1)
   {
-    opcao--;
-    if (opcao < 1)
+
+    if (btesquerda.pressionado())
     {
-      opcao = 3;
+      opcao--;
+      if (opcao < 1)
+      {
+        opcao = 3;
+      }
+      Serial.println("ESQUERDA");
+      opcoes();
     }
-    opcoes();
+
+    if (btdireita.pressionado())
+    {
+      opcao++;
+      if (opcao > 3)
+      {
+        opcao = 1;
+      }
+      Serial.println("DIREITA");
+      opcoes();
+    }
+
+    if (btconfirmar.pressionado())
+    {
+      menu = 2;
+      configs();
+    }
   }
 
-  if (btdireita.pressionado())
+  if (menu == 2)
   {
-    opcao++;
-    if (opcao > 3)
+
+    if (btdireita.pressionado())
     {
-      opcao = 1;
+      config++;
+      if (config > 3)
+      {
+        config = 1;
+      }
+      configs();
     }
-    opcoes();
+
+    if (btesquerda.pressionado())
+    {
+      config--;
+      if (config < 1)
+      {
+        config = 3;
+      }
+      configs();
+    }
   }
 }
