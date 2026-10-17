@@ -1,4 +1,5 @@
 #include "classes.h"
+#include <Arduino.h>
 
 
  Botao::Botao(int pinArduino)
@@ -31,4 +32,50 @@
 
     estadoAnterior = estadoBtAtual;
     return clicou;
+  };
+
+
+Led::Led(int pinoArduino)
+  {
+    pino = pinoArduino;
+    estado = false;
+    piscando = false;
+    tempoAnterior = 0;
+  }
+
+  void Led:: begin()
+  {
+    pinMode(pino, OUTPUT);
+    desligar();
+  }
+  void Led::desligar()
+  {
+    digitalWrite(pino, LOW);
+    estado = false;
+    piscando = false;
+  }
+  void Led::ligar()
+  {
+    digitalWrite(pino, HIGH);
+    estado = true;
+    piscando = false;
+  }
+
+  void Led::iniciarPiscar()
+  {
+    piscando = true;
+  }
+
+  void Led::atualizar()
+  {
+    if (piscando)
+    {
+      unsigned long tempoAtual = millis();
+      if (tempoAtual - tempoAnterior >= 500)
+      {
+        tempoAnterior = tempoAtual;
+        estado = !estado;
+        digitalWrite(pino, estado);
+      }
+    }
   }

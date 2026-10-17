@@ -18,4 +18,23 @@ public:
   
 };
 
+class Led
+{
+private:
+  int pino;
+  bool estado;
+  bool piscando;
+  unsigned long tempoAnterior;
+
+public:
+  Led(int pinoArduino);
+
+  void begin();
+  void desligar();
+  void ligar();
+  void iniciarPiscar();
+
+  void atualizar();
+};
+
 #endif
