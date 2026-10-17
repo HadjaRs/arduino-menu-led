@@ -22,17 +22,6 @@ Interface web interativa e responsiva desenvolvida para controle bidirecional de
 
 ---
 
-## 🛠️ Tecnologias e Ferramentas
-
-| Tecnologia | Descrição |
-| :--- | :--- |
-| **Arduino (C++)** | Firmware modular estruturado com Programação Orientada a Objetos (Classes `Led` e `Botao`). |
-| **Web Serial API** | Manipulação do fluxo serial com `TextDecoder`, `TextEncoder` e tratamento de buffer por quebra de linha. |
-| **HTML5 & CSS3** | Dashboard estilizado no formato *Dark Theme Neon/OLED* responsivo. |
-| **Git & GitHub** | Controle de versão utilizando fluxo de trabalho baseado em *feature branches*. |
-
----
-
 ## 🧰 Componentes de Hardware
 
 - 1x Placa Arduino Uno / Nano
